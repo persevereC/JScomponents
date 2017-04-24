@@ -1,0 +1,29 @@
+.ui-date-picker {
+  width: 240px;
+  font-size: 18px;
+  color: #555;
+  border: 1px solid #aaa; }
+  .ui-date-picker .ui-date-picker-header {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    line-height: 40px;
+    background: #eee;
+    cursor: pointer; }
+    .ui-date-picker .ui-date-picker-header .ui-date-cur-month {
+      display: inline-block;
+      width: 120px;
+      text-align: center; }
+  .ui-date-picker .ui-date-picker-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center; }
+    .ui-date-picker .ui-date-picker-body table th {
+      border: 1px solid #eee;
+      padding: 6px; }
+    .ui-date-picker .ui-date-picker-body table td {
+      border: 1px solid #eee;
+      padding: 6px;
+      cursor: pointer; }
