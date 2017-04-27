@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ScrollFix</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<style>
+		    html{height: 100%;}
+            body{padding: 0;margin: 0;font-family: helvetica, arial, sans-serif;max-height: 100%;-webkit-overflow-scrolling:touch;}
+            .scrollable{position: absolute;top: 50px;left: 0;right: 0;bottom: 0;overflow-y: scroll;-webkit-overflow-scrolling: touch;-webkit-box-flex: 1;}
+            .header{-webkit-box-sizing: border-box;padding: 1em;background: #222;color: #fff;font-weight: bold;text-align: center;height: 50px;}
+            ul{padding: 0;margin: 0;}
+            li{list-style: none;margin: 0;padding: 1em;border-bottom: 1px solid #ccc;}
+		</style>
+	</head>
+	<body>
+		<div class="header">top-header</div>
+		<div class="scrollable" id="scrollable">
+			<ul>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+			</ul>
+		</div>
+		<script>
+	    var ScrollFix = function(elem) {
+			var startY, startTopScroll;
+			
+			elem = elem || document.querySelector(elem);
+			
+			if(!elem)
+				return;
+
+			elem.addEventListener('touchstart', function(event){
+				startY = event.touches[0].pageY;
+				startTopScroll = elem.scrollTop;
+				
+				if(startTopScroll <= 0)
+					elem.scrollTop = 1;
+
+				if(startTopScroll + elem.offsetHeight >= elem.scrollHeight)
+					elem.scrollTop = elem.scrollHeight - elem.offsetHeight - 1;
+			}, false);
+		};
+		var scrollable = document.getElementById("scrollable");
+		new ScrollFix(scrollable);
+	    </script>
+	</body>
+</html>
