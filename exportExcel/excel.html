@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <title>html 表格导出道</title>   
+</head>  
+<body>  
+  
+<div >
+    <button type="button" onclick="method5('tableExcel')">导出Excel方法五</button>  
+</div>  
+<div id="myDiv">  
+<table id="tableExcel" width="100%" border="1" cellspacing="0" cellpadding="0">  
+    <tr>  
+        <td colspan="5" align="center">html 表格导出道Excel</td>  
+    </tr>  
+    <tr>  
+        <td>列标题1</td>  
+        <td>列标题2</td>  
+        <td>类标题3</td>  
+        <td>列标题4</td>  
+        <td>列标题5</td>  
+    </tr>
+</table>  
+</div>  
+<script>
+function method5(tableid) {
+	tableToExcel(tableid)  
+}
+var tableToExcel = (function() {  
+	var uri = 'data:application/vnd.ms-excel;base64,',  
+			template = '<html><head><meta charset="UTF-8"></head><body><table>{table}</table></body></html>',  
+			base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },  
+			format = function(s, c) {  
+				return s.replace(/{(\w+)}/g,  
+						function(m, p) { return c[p]; }) }  
+	return function(table, name) {  
+		if (!table.nodeType) table = document.getElementById(table)  
+		var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}  
+		window.location.href = uri + base64(format(template, ctx))  
+	}  
+})();
+
+//取数据
+var array = ["Linux文件权限", "maven笔记", "如何用php实现简单的文件上传功能？（带图解）", "一步步学习EF Core(3.EF Core2.0路线图)", "编写自己的一个简单的web容器（二）", "Linux学习第三步(Centos7安装mysql5.7数据库)", "OpenCV探索之路（三）：滤波操作", "iOS 关于UITableView的黑科技", "基于HTML5快速搭建TP-LINK电信拓扑设备面板", "selenium基础框架的封装(Python版)", "浏览器播放rtsp流媒体解决方案", "前端架构之路：Windows下安装Nodejs步骤", "python django 实现验证码的功能", "文本主题模型之LDA(二) LDA求解之Gibbs采样算法", "EF Core 2.0 新特性", "ASP.NET MVC5路由系统机制详细讲解", "Android 开发—— 小工具，大效率", "web 直播&即时聊天------阿里云、融云", "jQuery操作之效果", "SQL SERVER大话存储结构（3）_数据行的行结构"];
+/*
+var getData = function(className) {
+    var elements = document.querySelectorAll(className);
+	var arr = Array.from(elements), len = arr.length;
+	for(var i= 0; i < len; i++){
+		array.push(arr[i].innerText)
+	}	
+}
+getData(className);*/
+var table = document.querySelector('#tableExcel');
+var len = array.length;
+for(var i= 0; i < len; i++){
+	table.innerHTML += '<tr><td>'+ array[i] +'</td></tr>'
+}
+
+var exportExcel = {
+    getData: function(className) {
+		var elements = document.querySelectorAll(className);
+		var arr = Array.from(elements), len = arr.length;
+		for(var i= 0; i < len; i++){
+			array.push(arr[i].innerText)
+		}	
+	}
+}
+</script> 
+</body>  
+</html>  
